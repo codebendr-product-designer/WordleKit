@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "WordleKit",
+    platforms: [
+        .iOS(.v15), .macOS(.v12)
+    ],
     products: [
         .library(name: "WordleKit", targets: ["WordleKit"]),
         .library(name: "ScoreClient", targets: ["ScoreClient"]),
