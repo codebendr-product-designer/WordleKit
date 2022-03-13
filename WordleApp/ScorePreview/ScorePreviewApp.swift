@@ -1,17 +1,13 @@
-//
-//  ScorePreviewApp.swift
-//  ScorePreview
-//
-//  Created by Evans Domina Attafuah on 13/03/2022.
-//
-
 import SwiftUI
+import WordleKit
 
 @main
 struct ScorePreviewApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WordleKit.ContentView(
+                .init(scoreClient: .live)
+            )
         }
     }
 }

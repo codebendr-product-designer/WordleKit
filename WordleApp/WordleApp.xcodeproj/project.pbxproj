@@ -19,6 +19,7 @@
 		9F23888427DD91FF001DB8C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F23888327DD91FF001DB8C9 /* Preview Assets.xcassets */; };
 		9F23888B27DD9219001DB8C9 /* ScoreClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 9F23888A27DD9219001DB8C9 /* ScoreClientLive */; };
 		9F23888D27DD9237001DB8C9 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23888C27DD9237001DB8C9 /* AppViewModel.swift */; };
+		9F23888F27DD9D61001DB8C9 /* WordleKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F23888E27DD9D61001DB8C9 /* WordleKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F23888F27DD9D61001DB8C9 /* WordleKit in Frameworks */,
 				9F23888B27DD9219001DB8C9 /* ScoreClientLive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +156,7 @@
 			name = ScorePreview;
 			packageProductDependencies = (
 				9F23888A27DD9219001DB8C9 /* ScoreClientLive */,
+				9F23888E27DD9D61001DB8C9 /* WordleKit */,
 			);
 			productName = ScorePreview;
 			productReference = 9F23887A27DD91FF001DB8C9 /* ScorePreview.app */;
@@ -521,6 +524,10 @@
 		9F23888A27DD9219001DB8C9 /* ScoreClientLive */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ScoreClientLive;
+		};
+		9F23888E27DD9D61001DB8C9 /* WordleKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WordleKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
