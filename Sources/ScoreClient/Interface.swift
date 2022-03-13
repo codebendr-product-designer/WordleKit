@@ -1,8 +1,18 @@
-//
-//  File.swift
-//  
-//
-//  Created by Evans Domina Attafuah on 13/03/2022.
-//
+import Combine
+import WordleKit
 
-import Foundation
+public extension WordleKit {
+    struct ScoreClient {
+        public enum Method: String {
+            case get, post, delete
+        }
+        public typealias ScoresPublisher = () -> AnyPublisher<Scores, Error>
+        
+        public var scores: ScoresPublisher
+        public init(
+            scores: @escaping ScoresPublisher
+        ) {
+            self.scores = scores
+        }
+    }
+}
