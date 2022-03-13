@@ -1,21 +1,41 @@
-//
-//  ContentView.swift
-//  ScorePreview
-//
-//  Created by Evans Domina Attafuah on 13/03/2022.
-//
-
 import SwiftUI
+import WordleKit
 
-struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+extension WordleKit {
+    struct ContentView: View {
+        @ObservedObject var viewModel: AppViewModel
+        
+        public init(
+            _ viewModel: AppViewModel
+        ) {
+            self.viewModel = viewModel
+            dump($viewModel.scores.count)
+            
+        }
+        
+        public var body: some View {
+            NavigationView {
+                List(viewModel.scores) { score in
+                    NavigationLink {
+                        List(score.tries, id:\.self) {
+                            Text($0)
+                        }
+                        
+                    } label: {
+                        Text(score.word).font(.largeTitle)
+                    }
+                }
+                .navigationTitle("some data")
+            }
+        }
     }
 }
 
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WordleKit.ContentView(
+            .init(scoreClient: .live)
+        )
     }
 }
