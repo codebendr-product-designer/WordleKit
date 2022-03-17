@@ -11,13 +11,24 @@ let package = Package(
     products: [
         .library(name: "WordleKit", targets: ["WordleKit"]),
         .library(name: "ScoreClient", targets: ["ScoreClient"]),
-        .library(name: "ScoreClientLive", targets: ["ScoreClientLive"])
+        .library(name: "ScoreClientLive", targets: ["ScoreClientLive"]),
+        .library(name: "Helpers", targets: ["Helpers"]),
+        .library(name: "ScoreFeature", targets: ["ScoreFeature"]),
+        .library(name: "Animations", targets: ["Animations"])
     ],
     dependencies: [ ],
     targets: [
         .target(name: "WordleKit"),
         .target(name: "ScoreClient", dependencies: ["WordleKit"]),
         .target(name: "ScoreClientLive", dependencies: ["WordleKit", "ScoreClient"]),
+        .target(name: "Helpers"),
+        .target(name: "Animations"),
+        .target(name: "ScoreFeature", dependencies: [
+            "ScoreClient",
+            "Helpers",
+            "Animations",
+            "WordleKit"
+        ]),
         .testTarget(
             name: "WordleKitTests",
             dependencies: ["WordleKit"]),
