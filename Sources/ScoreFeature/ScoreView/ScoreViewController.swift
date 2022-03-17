@@ -6,35 +6,28 @@ import Combine
 import Foundation
 import Helpers
 import SwiftUI
+import Animations
 
 public extension WordleKit {
     class ScoreViewController: UIViewController {
         typealias DiffableDataSource = UICollectionViewDiffableDataSource<Section, Scores.Score>
+        typealias DiffableSnapshot =  NSDiffableDataSourceSnapshot<Section, Scores.Score>
         enum Section {
             case main
         }
         
-        var viewModel: AppViewModel
+        @ObservedObject var viewModel: AppViewModel
         private var cancellables = Set<AnyCancellable>()
         private var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        var dataSource: DiffableDataSource! = nil
-        var collectionView = UICollectionView()
+        private var dataSource: DiffableDataSource! = nil
+        private var collectionView = UICollectionView()
+        private let transitionDelegate = TransitionDelegate()
         
         public  init(
             _ viewModel: AppViewModel
         ) {
             self.viewModel = viewModel
             super.init(nibName: nil, bundle: nil)
-            
-            self.viewModel.$scores
-                .removeDuplicates()
-                .sink { score in
-                    var snapshot = NSDiffableDataSourceSnapshot<Section, WordleKit.Scores.Score>()
-                    snapshot.appendSections([.main])
-                    snapshot.appendItems(score)
-                    self.dataSource.apply(snapshot, animatingDifferences: true)
-                }
-                .store(in: &cancellables)
         }
         
         required init?(coder: NSCoder) {
@@ -43,8 +36,22 @@ public extension WordleKit {
         
         public override func viewDidLoad() {
             super.viewDidLoad()
+            navigationItem.title = "Scores"
             
-            self.navigationItem.title = "Scores"
+            configureHierarchy()
+            configureDataSource()
+            
+            self.transitioningDelegate = transitionDelegate
+            
+            self.viewModel.$scores
+                .removeDuplicates()
+                .sink { score in
+                    var snapshot = DiffableSnapshot()
+                    snapshot.appendSections([.main])
+                    snapshot.appendItems(score)
+                    self.dataSource.apply(snapshot, animatingDifferences: true)
+                }
+                .store(in: &cancellables)
             
         }
     }
@@ -87,7 +94,7 @@ public extension WordleKit.ScoreViewController {
             cell.contentConfiguration = content
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, WordleKit.Scores.Score>(collectionView: collectionView) {
+        dataSource = DiffableDataSource(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: WordleKit.Scores.Score) -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
