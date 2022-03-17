@@ -20,7 +20,7 @@ public extension WordleKit {
         private var cancellables = Set<AnyCancellable>()
         private var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         private var dataSource: DiffableDataSource! = nil
-        private var collectionView = UICollectionView()
+        private var collectionView: UICollectionView! = nil
         private let transitionDelegate = TransitionDelegate()
         
         public  init(
@@ -106,7 +106,20 @@ extension WordleKit.ScoreViewController: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        guard let _ = dataSource.itemIdentifier(for: indexPath) else { return }
+        guard let score = dataSource.itemIdentifier(for: indexPath) else { return }
+        let detail = WordleKit.DetailViewController(
+            tries: viewModel.tries(score)
+        )
+        
+#warning("weird behavior, view dismissal fires once when this is not called. is this related to loadViewIfNeeded()")
+        let _ = detail.view!
+        
+        detail.transitioningDelegate = transitioningDelegate
+        self.navigationController?.navigationItem.title = score.word
+        self.navigationController?.present(detail, animated: true) {
+            let cardViewController = WordleKit.CardViewController()
+            detail.add(cardViewController)
+        }
         
     }
 }

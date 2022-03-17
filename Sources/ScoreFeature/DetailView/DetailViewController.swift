@@ -10,7 +10,7 @@ public extension WordleKit {
             case main
         }
         
-        init(tries: [Tries]) {
+        public init(tries: [Tries]) {
             self.tries = tries
             super.init(nibName: nil, bundle: nil)
         }
@@ -98,13 +98,13 @@ extension WordleKit.DetailViewController: UICollectionViewDelegate {
 //extension WordleKit.DetailViewController {
 //    struct DetailViewControllerPreview: UIViewControllerRepresentable {
 //        typealias UIViewControllerType = DetailViewController
-//        
+//
 //        func makeUIViewController(context: Context) -> DetailViewController {
 //            DetailViewController(tries:([]))
 //        }
-//        
+//
 //        func updateUIViewController(_ uiViewController: DetailViewController, context: Context) {}
-//        
+//
 //    }
 //}
 //
