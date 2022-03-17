@@ -22,7 +22,7 @@ let package = Package(
         .target(name: "ScoreClient", dependencies: ["WordleKit"]),
         .target(name: "ScoreClientLive", dependencies: ["WordleKit", "ScoreClient"]),
         .target(name: "Helpers"),
-        .target(name: "Animations"),
+        .target(name: "Animations", dependencies: ["WordleKit"]),
         .target(name: "ScoreFeature", dependencies: [
             "ScoreClient",
             "Helpers",
