@@ -8,9 +8,15 @@ public extension WordleKit {
         
         // MARK: - Score
         public struct Score: Codable, Identifiable, Hashable {
-            public let id: Int
-            public let date, word: String
-            public let tries: [String]
+            public var id: Int = 0
+            public var date: String = ""
+            public var word: String = ""
+            public var tries: [String] = []
+            
+            public init(word: String, tries: [String]) {
+                self.word = word
+                self.tries = tries
+            }
         }
     }
 }
