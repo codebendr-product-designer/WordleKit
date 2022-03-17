@@ -1,8 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by Evans Domina Attafuah on 17/03/2022.
-//
-
-import Foundation
+public extension Array where Element: Hashable {
+     func diffing(from other: [Element]) -> [Element] {
+         .init(Set(self).symmetricDifference(Set(other)))
+    }
+}

@@ -38,6 +38,12 @@ public extension WordleKit {
                 .store(in: &cancellables)
         }
         
+        private func diffing(
+            local: [Scores.Score],
+            from remote: [Scores.Score]) -> [Scores.Score] {
+                local.diffing(from: remote)
+            }
+        
 #warning("Dirty Dancing, figure out a better DSA for this")
         public func tries(_ score: Scores.Score) -> [Tries] {
             var tries = [Tries]()
@@ -87,7 +93,7 @@ public extension WordleKit {
                 }
             }
             let count = 30 - characterCount
-       
+            
             for _ in 0..<count  {
                 tries.append(.init(.init(" ")))
             }
