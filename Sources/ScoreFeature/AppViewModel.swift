@@ -12,6 +12,28 @@ public extension WordleKit {
         
         public init(scoreClient: ScoreClient) {
             self.scoreClient = scoreClient
+            polling()
+            
+            Timer.publish(every: 10, on: .main, in: .common)
+                .autoconnect()
+                .scan(0) { count, _ in
+                    self.polling()
+                    return count + 1
+                }
+                .assign(to: \.counter, on: self)
+                .store(in: &cancellables)
+        }
+        
+        private func polling() {
+            scoreClient
+                .scores()
+                .sink(
+                    receiveCompletion: { _ in},
+                    receiveValue: { [weak self] scores in
+                        self?.scores = scores.scores
+                    }
+                )
+                .store(in: &cancellables)
         }
     }
 }
