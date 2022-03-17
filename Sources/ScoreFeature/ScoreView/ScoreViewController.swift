@@ -116,8 +116,8 @@ extension WordleKit.ScoreViewController: UICollectionViewDelegate {
         
         detail.transitioningDelegate = transitioningDelegate
         self.navigationController?.navigationItem.title = score.word
-        self.navigationController?.present(detail, animated: true) {
-            let cardViewController = WordleKit.CardViewController()
+        self.navigationController?.present(detail, animated: true) { [weak self] in
+            let cardViewController = WordleKit.CardViewController(totalScores: self?.viewModel.totalScore ?? 0)
             detail.add(cardViewController)
         }
         

@@ -24,6 +24,7 @@ public extension WordleKit {
             return view
         }()
         
+        private var totalScores = 0
         private let panRecognizer = InstantPanGestureRecognizer()
         private var animator = UIViewPropertyAnimator()
         private var isOpen = false
@@ -37,15 +38,25 @@ public extension WordleKit {
             }
         }
         
+        init(totalScores: Int) {
+            self.totalScores = totalScores
+            super.init(nibName: nil, bundle: nil)
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
         public override func viewDidLoad() {
             super.viewDidLoad()
             
             let label = UILabel()
-            label.text = "40🎉"
+            label.text = "\(totalScores)🎉"
             label.font = .systemFont(ofSize: 70, weight: .thin)
             label.textAlignment = .center
             label.translatesAutoresizingMaskIntoConstraints = false
             
+            #warning("dirty dancing, some UI cleanup will help")
             view.addSubview(cardView)
             cardView.addSubview(label)
             NSLayoutConstraint.activate([

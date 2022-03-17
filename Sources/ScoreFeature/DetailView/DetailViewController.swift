@@ -2,6 +2,7 @@ import UIKit
 import WordleKit
 import SwiftUI
 
+#warning("extract extension to custom views")
 public extension WordleKit {
     class DetailViewController: UIViewController {
         private var tries: [Tries]
