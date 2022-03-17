@@ -96,24 +96,3 @@ extension WordleKit.DetailViewController: UICollectionViewDelegate {
     }
 }
 
-//extension WordleKit.DetailViewController {
-//    struct DetailViewControllerPreview: UIViewControllerRepresentable {
-//        typealias UIViewControllerType = DetailViewController
-//
-//        func makeUIViewController(context: Context) -> DetailViewController {
-//            DetailViewController(tries:([]))
-//        }
-//
-//        func updateUIViewController(_ uiViewController: DetailViewController, context: Context) {}
-//
-//    }
-//}
-//
-//
-//@available(iOS 13.0, *)
-//struct DetailViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        WordleKit.DetailViewControllerPreview()
-//            .ignoresSafeArea()
-//    }
-//}

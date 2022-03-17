@@ -124,25 +124,25 @@ extension WordleKit.ScoreViewController: UICollectionViewDelegate {
     }
 }
 
-//public extension WordleKit {
-//struct ViewControllerPreview: UIViewControllerRepresentable {
-//    typealias UIViewControllerType = ScoreViewController
-//
-//    func makeUIViewController(context: Context) -> ScoreViewController {
-//        .init(.init(scoreClient: .))
-//    }
-//
-//    func updateUIViewController(_ uiViewController: ScoreViewController, context: Context) {}
-//
-//}
-//}
-//@available(iOS 13.0, *)
-//struct ViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        WordleKit.ViewControllerPreview()
-//            .ignoresSafeArea()
-//    }
-//}
+public extension WordleKit {
+struct ViewControllerPreview: UIViewControllerRepresentable {
+    public typealias UIViewControllerType = WordleKit.ScoreViewController
+
+    public func makeUIViewController(context: Context) -> WordleKit.ScoreViewController {
+        .init(.init(scoreClient: .happyPath))
+    }
+
+    public func updateUIViewController(_ uiViewController: WordleKit.ScoreViewController, context: Context) {}
+
+}
+}
+@available(iOS 13.0, *)
+struct ViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        WordleKit.ViewControllerPreview()
+            .ignoresSafeArea()
+    }
+}
 
 
 
