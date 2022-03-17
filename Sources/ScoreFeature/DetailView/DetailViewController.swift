@@ -82,7 +82,7 @@ extension WordleKit.DetailViewController {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: Tries) -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
-
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, Tries>()
         snapshot.appendSections([.main])
         snapshot.appendItems(tries)

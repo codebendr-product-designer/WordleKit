@@ -49,15 +49,15 @@ public extension WordleKit {
             var tries = [Tries]()
             var doubleCharCheck: Character = .init(" ")
             var characterCount = 0
- 
+            
             score.tries.enumerated().forEach { index,word in
                 word.forEach { character in
                     characterCount += 1
                     let positionalScore = word.count * index
                     self.totalScore = score.word == word && index <= 3 ?
-                         positionalScore * 30 :
-                         -positionalScore * 10
-                         
+                    positionalScore * 30 :
+                    -positionalScore * 10
+                    
                     var t = Tries()
                     if score.word.contains(character) {
                         t = Tries(character, 1)

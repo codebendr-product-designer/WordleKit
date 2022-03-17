@@ -56,7 +56,7 @@ public extension WordleKit {
             label.textAlignment = .center
             label.translatesAutoresizingMaskIntoConstraints = false
             
-            #warning("dirty dancing, some UI cleanup will help")
+#warning("dirty dancing, some UI cleanup will help")
             view.addSubview(cardView)
             cardView.addSubview(label)
             NSLayoutConstraint.activate([
@@ -144,6 +144,6 @@ extension WordleKit.CardViewController {
         animator.startAnimation()
     }
 }
-    
-    
-    
+
+
+
