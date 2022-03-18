@@ -18,7 +18,7 @@ public extension WordleKit {
         
         @ObservedObject var viewModel: AppViewModel
         private var cancellables = Set<AnyCancellable>()
-        private var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+     
         private var dataSource: DiffableDataSource! = nil
         private var collectionView: UICollectionView! = nil
         private let transitionDelegate = TransitionDelegate()
@@ -59,14 +59,11 @@ public extension WordleKit {
 
 public extension WordleKit.ScoreViewController {
     private func createLayout() -> UICollectionViewLayout {
+         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         config.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .systemBackground : .white
         return UICollectionViewCompositionalLayout.list(using: config)
     }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        config.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .systemBackground : .white
-    }
+
 }
 
 public extension WordleKit.ScoreViewController {
@@ -129,7 +126,7 @@ struct ViewControllerPreview: UIViewControllerRepresentable {
     public typealias UIViewControllerType = WordleKit.ScoreViewController
 
     public func makeUIViewController(context: Context) -> WordleKit.ScoreViewController {
-        .init(.init(scoreClient: .happyPath))
+        .init(.init(scoreClient: .polling, isPolling: false))
     }
 
     public func updateUIViewController(_ uiViewController: WordleKit.ScoreViewController, context: Context) {}
