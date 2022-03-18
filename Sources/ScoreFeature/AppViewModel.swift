@@ -48,6 +48,8 @@ public extension WordleKit {
             }
         
 #warning("Dirty Dancing, figure out a better DSA for this or HOF")
+#warning("Break Apart to Unit Test individual Parts")
+#warning("Character Count, Number of Yellow Tiles?, Words with Double letters?")
         public func tries(_ score: Scores.Score) -> [Tries] {
             var tries = [Tries]()
             var doubleCharCheck: Character = .init(" ")
