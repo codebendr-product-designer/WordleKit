@@ -9,13 +9,15 @@ public extension WordleKit {
         @Published public var scores = [Scores.Score]()
         @Published private var counter = 0
         private let scoreClient: ScoreClient
+        private var isPolling: Bool
         public var totalScore = 0
         private var cancellables = Set<AnyCancellable>()
         
-        public init(scoreClient: ScoreClient) {
+        public init(scoreClient: ScoreClient, isPolling: Bool = true) {
             self.scoreClient = scoreClient
+            self.isPolling = isPolling
             polling()
-            
+            if isPolling {
             Timer.publish(every: 10, on: .main, in: .common)
                 .autoconnect()
                 .scan(0) { count, _ in
@@ -24,6 +26,7 @@ public extension WordleKit {
                 }
                 .assign(to: \.counter, on: self)
                 .store(in: &cancellables)
+            }
         }
         
         private func polling() {
