@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "WordleKit",
     platforms: [
-        .iOS(.v15), .macOS(.v12)
+        .iOS(.v15)
     ],
     products: [
         .library(name: "WordleKit", targets: ["WordleKit"]),
@@ -30,7 +30,7 @@ let package = Package(
             "WordleKit"
         ]),
         .testTarget(
-            name: "WordleKitTests",
-            dependencies: ["WordleKit"]),
+            name: "ClientTests",
+            dependencies: ["WordleKit", "ScoreClient", "ScoreFeature"]),
     ]
 )
