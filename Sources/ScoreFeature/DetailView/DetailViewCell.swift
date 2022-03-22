@@ -2,7 +2,7 @@ import UIKit
 
 public class DetailViewCell: UICollectionViewCell {
     let label = UILabel()
-    static let reuseIdentifier = "text-cell-reuse-identifier"
+    static let reuseIdentifier = "character-cell-reuse-identifier"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
