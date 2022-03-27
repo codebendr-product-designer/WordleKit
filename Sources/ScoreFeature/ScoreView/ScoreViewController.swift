@@ -18,7 +18,7 @@ public extension WordleKit {
         
         @ObservedObject var viewModel: AppViewModel
         private var cancellables = Set<AnyCancellable>()
-     
+        
         private var dataSource: DiffableDataSource! = nil
         private var collectionView: UICollectionView! = nil
         private let transitionDelegate = TransitionDelegate()
@@ -41,6 +41,16 @@ public extension WordleKit {
             configureHierarchy()
             configureDataSource()
             
+      
+            let image  = UIImageView(
+                image: .init(systemName: "circlebadge.fill")
+                )
+            image.tintColor = .systemIndigo.withAlphaComponent(0.5)
+            
+            self.navigationItem.rightBarButtonItem = .init(
+                customView: image)
+            
+            
             self.transitioningDelegate = transitionDelegate
             
             self.viewModel.$scores
@@ -59,11 +69,11 @@ public extension WordleKit {
 
 public extension WordleKit.ScoreViewController {
     private func createLayout() -> UICollectionViewLayout {
-         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         config.backgroundColor = traitCollection.userInterfaceStyle == .dark ? .systemBackground : .white
         return UICollectionViewCompositionalLayout.list(using: config)
     }
-
+    
 }
 
 public extension WordleKit.ScoreViewController {
@@ -88,6 +98,13 @@ public extension WordleKit.ScoreViewController {
             
             cell.backgroundView = backgroundView
             cell.accessories = [.disclosureIndicator(options: .init(tintColor: .systemIndigo))]
+            if item.isNew {
+                let image  = UIImageView(
+                    image: .init(systemName: "circlebadge.fill")
+                    )
+                image.tintColor = .systemIndigo.withAlphaComponent(0.5)
+                cell.accessories.append(.customView(configuration: .init(customView: image, placement: .trailing(displayed: .always))))
+            }
             cell.contentConfiguration = content
         }
         
@@ -121,23 +138,12 @@ extension WordleKit.ScoreViewController: UICollectionViewDelegate {
     }
 }
 
-public extension WordleKit {
-struct ViewControllerPreview: UIViewControllerRepresentable {
-    public typealias UIViewControllerType = WordleKit.ScoreViewController
-
-    public func makeUIViewController(context: Context) -> WordleKit.ScoreViewController {
-        .init(.init(scoreClient: .polling, isPolling: false))
-    }
-
-    public func updateUIViewController(_ uiViewController: WordleKit.ScoreViewController, context: Context) {}
-
-}
-}
 @available(iOS 13.0, *)
 struct ViewController_Preview: PreviewProvider {
     static var previews: some View {
-        WordleKit.ViewControllerPreview()
-            .ignoresSafeArea()
+       UIViewControllerPreview {
+            WordleKit.ScoreViewController(.init(scoreClient: .polling, isPolling: false))
+        }
     }
 }
 
