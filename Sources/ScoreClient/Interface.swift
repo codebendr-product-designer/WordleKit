@@ -2,7 +2,7 @@ import Combine
 import WordleKit
 
 public extension WordleKit {
-    struct ScoreClient {
+    struct ScoreClient {        
         public enum Method: String {
             case get, post, delete
         }

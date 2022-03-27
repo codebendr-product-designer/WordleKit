@@ -8,6 +8,7 @@ public class DetailViewCell: UICollectionViewCell {
         super.init(frame: frame)
         configure()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("not implemnted")
     }
