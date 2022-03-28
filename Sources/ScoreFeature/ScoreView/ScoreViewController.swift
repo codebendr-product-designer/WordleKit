@@ -41,15 +41,10 @@ public extension WordleKit {
             configureHierarchy()
             configureDataSource()
             
-      
-            let image  = UIImageView(
-                image: .init(systemName: "circlebadge.fill")
-                )
+            let image  = UIImageView(image: .init(systemName: "circlebadge.fill"))
             image.tintColor = .systemIndigo.withAlphaComponent(0.5)
             
-            self.navigationItem.rightBarButtonItem = .init(
-                customView: image)
-            
+            self.navigationItem.rightBarButtonItem = .init(customView: image)
             
             self.transitioningDelegate = transitionDelegate
             
@@ -62,7 +57,6 @@ public extension WordleKit {
                     self.dataSource.apply(snapshot, animatingDifferences: true)
                 }
                 .store(in: &cancellables)
-            
         }
     }
 }
@@ -134,7 +128,6 @@ extension WordleKit.ScoreViewController: UICollectionViewDelegate {
             let cardViewController = WordleKit.CardViewController(totalScores: self?.viewModel.totalScore ?? 0)
             detail.add(cardViewController)
         }
-        
     }
 }
 
