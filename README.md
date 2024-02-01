@@ -12,9 +12,7 @@
 
 <br/>
 
-## Thank you 🙏🏿
-<div  style="display: block;">
- <p> Thank you for giving me the opportunity to demonstrate my skills. I really enjoyed working through this project.</p>
+
 
  ### Project Stats :
 <ol>
